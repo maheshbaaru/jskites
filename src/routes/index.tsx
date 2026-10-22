@@ -7,7 +7,7 @@ const WHATSAPP = "919999999999";
 const ADDRESS =
   "Ravindra Bharathi School Road, Kamala Nagar, Vanasthalipuram, Hyderabad, Telangana 500070";
 const MAP_QUERY = encodeURIComponent(`JS Kite Shop, ${ADDRESS}`);
-const WA_LINK = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi JS Kite Shop! I'd like to know about your kites.")}`;
+const WA_LINK = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent("Hi JS Kite Shop! I'd like to know about your kites.")}`;
 const DIRECTIONS = `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}`;
 
 export const Route = createFileRoute("/")({
@@ -99,7 +99,7 @@ function Index() {
           <ul className="mt-8 space-y-5 text-lg">
             <li className="flex gap-3"><MapPin className="mt-1 h-6 w-6 shrink-0 text-primary" />{ADDRESS}</li>
             <li className="flex gap-3"><Clock className="mt-1 h-6 w-6 shrink-0 text-primary" />Open daily · late hours in festival season</li>
-            <li className="flex gap-3"><Phone className="mt-1 h-6 w-6 shrink-0 text-primary" /><a href={WA_LINK} className="underline">Chat with us on WhatsApp</a></li>
+            <li className="flex gap-3"><Phone className="mt-1 h-6 w-6 shrink-0 text-primary" /><a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="underline">Chat with us on WhatsApp</a></li>
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">
             <Btn href={DIRECTIONS} variant="primary"><Navigation className="h-5 w-5" /> Navigate in Google Maps</Btn>
