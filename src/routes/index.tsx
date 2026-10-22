@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, MessageCircle, Navigation, Star, Clock, Phone } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 
-// TODO: replace with the shop's real WhatsApp number (country code + number, digits only)
-const WHATSAPP = "919999999999";
+const WHATSAPP = "919959651194";
+const PHONE_DISPLAY = "+91 99596 51194";
 const ADDRESS =
   "Ravindra Bharathi School Road, Kamala Nagar, Vanasthalipuram, Hyderabad, Telangana 500070";
 const MAP_QUERY = encodeURIComponent(`JS Kite Shop, ${ADDRESS}`);
