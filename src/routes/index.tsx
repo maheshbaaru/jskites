@@ -7,7 +7,18 @@ const PHONE_DISPLAY = "+91 99596 51194";
 const ADDRESS =
   "Ravindra Bharathi School Road, Kamala Nagar, Vanasthalipuram, Hyderabad, Telangana 500070";
 const MAP_QUERY = encodeURIComponent(`JS Kite Shop, ${ADDRESS}`);
-const WA_LINK = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent("Hi JS Kite Shop! I'd like to know about your kites.")}`;
+const WA_TEXT = encodeURIComponent("Hi JS Kite Shop! I'd like to know about your kites.");
+const WA_LINK = `https://wa.me/${WHATSAPP}?text=${WA_TEXT}`;
+const WA_WEB_LINK = `https://web.whatsapp.com/send?phone=${WHATSAPP}&text=${WA_TEXT}`;
+
+// On computers, open WhatsApp Web directly (api.whatsapp.com is often blocked);
+// on phones, wa.me opens the WhatsApp app.
+function onWhatsAppClick(e: React.MouseEvent<HTMLAnchorElement>) {
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  if (isMobile) return;
+  e.preventDefault();
+  window.open(WA_WEB_LINK, "_blank", "noopener,noreferrer");
+}
 const DIRECTIONS = `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}`;
 
 export const Route = createFileRoute("/")({
@@ -40,7 +51,7 @@ function Btn({ href, children, variant }: { href: string; children: React.ReactN
     ghost: "bg-card/90 text-foreground",
   }[variant];
   return (
-    <a href={href} target="_blank" rel="noreferrer"
+    <a href={href} target="_blank" rel="noopener noreferrer" onClick={href === WA_LINK ? onWhatsAppClick : undefined}
       className={`inline-flex items-center gap-2 rounded-full px-6 py-3 font-bold shadow-lg transition-transform hover:-translate-y-0.5 ${styles}`}>
       {children}
     </a>
@@ -99,7 +110,7 @@ function Index() {
           <ul className="mt-8 space-y-5 text-lg">
             <li className="flex gap-3"><MapPin className="mt-1 h-6 w-6 shrink-0 text-primary" />{ADDRESS}</li>
             <li className="flex gap-3"><Clock className="mt-1 h-6 w-6 shrink-0 text-primary" />Open daily · late hours in festival season</li>
-            <li className="flex gap-3"><Phone className="mt-1 h-6 w-6 shrink-0 text-primary" /><span><a href={`tel:+${WHATSAPP}`} className="underline font-bold">{PHONE_DISPLAY}</a><br /><a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="underline">Chat with us on WhatsApp</a></span></li>
+            <li className="flex gap-3"><Phone className="mt-1 h-6 w-6 shrink-0 text-primary" /><span><a href={`tel:+${WHATSAPP}`} className="underline font-bold">{PHONE_DISPLAY}</a><br /><a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={onWhatsAppClick} className="underline">Chat with us on WhatsApp</a></span></li>
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">
             <Btn href={DIRECTIONS} variant="primary"><Navigation className="h-5 w-5" /> Navigate in Google Maps</Btn>
@@ -115,7 +126,7 @@ function Index() {
         © {new Date().getFullYear()} JS Kite Shop · Vanasthalipuram, Hyderabad
       </footer>
 
-      <a href={WA_LINK} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp"
+      <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={onWhatsAppClick} aria-label="Chat on WhatsApp"
         className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-2xl transition-transform hover:scale-110">
         <MessageCircle className="h-7 w-7" />
       </a>
