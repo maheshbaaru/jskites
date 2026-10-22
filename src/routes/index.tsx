@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, MessageCircle, Navigation, Star, Clock, Phone } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 
-const WHATSAPP = "919959651194";
-const PHONE_DISPLAY = "+91 99596 51194";
+const WHATSAPP = "919989714335";
+const PHONE_DISPLAY = "+91 99897 14335";
 const ADDRESS =
   "Ravindra Bharathi School Road, Kamala Nagar, Vanasthalipuram, Hyderabad, Telangana 500070";
 const MAP_QUERY = encodeURIComponent(`JS Kite Shop, ${ADDRESS}`);
