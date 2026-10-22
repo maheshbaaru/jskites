@@ -22,11 +22,7 @@ function onWhatsAppClick(e: React.MouseEvent<HTMLAnchorElement>) {
   const markLeft = () => { left = true; };
   window.addEventListener("blur", markLeft, { once: true });
   document.addEventListener("visibilitychange", markLeft, { once: true });
-  try {
-    (window.top ?? window).location.href = WA_APP_LINK;
-  } catch {
-    window.location.href = WA_APP_LINK;
-  }
+  window.location.href = WA_APP_LINK;
   setTimeout(() => {
     window.removeEventListener("blur", markLeft);
     document.removeEventListener("visibilitychange", markLeft);
