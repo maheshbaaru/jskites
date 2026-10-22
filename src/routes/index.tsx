@@ -10,14 +10,28 @@ const MAP_QUERY = encodeURIComponent(`JS Kite Shop, ${ADDRESS}`);
 const WA_TEXT = encodeURIComponent("Hi JS Kite Shop! I'd like to know about your kites.");
 const WA_LINK = `https://wa.me/${WHATSAPP}?text=${WA_TEXT}`;
 const WA_WEB_LINK = `https://web.whatsapp.com/send?phone=${WHATSAPP}&text=${WA_TEXT}`;
+const WA_APP_LINK = `whatsapp://send?phone=${WHATSAPP}&text=${WA_TEXT}`;
 
-// On computers, open WhatsApp Web directly (api.whatsapp.com is often blocked);
-// on phones, wa.me opens the WhatsApp app.
+// Opens the visitor's own WhatsApp app with a chat to the shop's number.
+// Phones: whatsapp:// opens the app directly (wa.me as fallback).
+// Computers: whatsapp:// opens WhatsApp Desktop; if it isn't installed, fall back to WhatsApp Web.
 function onWhatsAppClick(e: React.MouseEvent<HTMLAnchorElement>) {
-  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-  if (isMobile) return;
   e.preventDefault();
-  window.open(WA_WEB_LINK, "_blank", "noopener,noreferrer");
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  let left = false;
+  const markLeft = () => { left = true; };
+  window.addEventListener("blur", markLeft, { once: true });
+  document.addEventListener("visibilitychange", markLeft, { once: true });
+  try {
+    (window.top ?? window).location.href = WA_APP_LINK;
+  } catch {
+    window.location.href = WA_APP_LINK;
+  }
+  setTimeout(() => {
+    window.removeEventListener("blur", markLeft);
+    document.removeEventListener("visibilitychange", markLeft);
+    if (!left) window.open(isMobile ? WA_LINK : WA_WEB_LINK, "_blank", "noopener,noreferrer");
+  }, 2000);
 }
 const DIRECTIONS = `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}`;
 
