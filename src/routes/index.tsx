@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, MessageCircle, Navigation, Star, Clock, Phone } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 
-// TODO: replace with the shop's real WhatsApp number (country code + number, digits only)
-const WHATSAPP = "919999999999";
+const WHATSAPP = "919959651194";
+const PHONE_DISPLAY = "+91 99596 51194";
 const ADDRESS =
   "Ravindra Bharathi School Road, Kamala Nagar, Vanasthalipuram, Hyderabad, Telangana 500070";
 const MAP_QUERY = encodeURIComponent(`JS Kite Shop, ${ADDRESS}`);
@@ -99,7 +99,7 @@ function Index() {
           <ul className="mt-8 space-y-5 text-lg">
             <li className="flex gap-3"><MapPin className="mt-1 h-6 w-6 shrink-0 text-primary" />{ADDRESS}</li>
             <li className="flex gap-3"><Clock className="mt-1 h-6 w-6 shrink-0 text-primary" />Open daily · late hours in festival season</li>
-            <li className="flex gap-3"><Phone className="mt-1 h-6 w-6 shrink-0 text-primary" /><a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="underline">Chat with us on WhatsApp</a></li>
+            <li className="flex gap-3"><Phone className="mt-1 h-6 w-6 shrink-0 text-primary" /><span><a href={`tel:+${WHATSAPP}`} className="underline font-bold">{PHONE_DISPLAY}</a><br /><a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="underline">Chat with us on WhatsApp</a></span></li>
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">
             <Btn href={DIRECTIONS} variant="primary"><Navigation className="h-5 w-5" /> Navigate in Google Maps</Btn>
