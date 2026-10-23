@@ -8,6 +8,7 @@ import imgKids from "@/assets/p-kids.jpg";
 import imgCombos from "@/assets/p-combos.jpg";
 import imgBulk from "@/assets/p-bulk.jpg";
 import { SiteNav } from "@/components/site-nav";
+import { FlyingKites } from "@/components/flying-kites";
 import {
   ADDRESS,
   DIRECTIONS,
@@ -49,7 +50,8 @@ function Index() {
         <img src={hero} alt="Colourful kites over Hyderabad" width={1600} height={1008}
           className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-hero-overlay" />
-        <div className="relative mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-end px-6 pb-16 text-primary-foreground">
+        <FlyingKites />
+        <div className="hero-content relative mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-end px-6 pb-16 text-primary-foreground">
           <span className="mb-4 inline-flex w-fit items-center gap-1 rounded-full bg-card/90 px-4 py-1 text-sm font-bold text-foreground">
             <Star className="h-4 w-4 fill-accent text-accent" /> 5.0 · 194 Google reviews
           </span>
@@ -74,7 +76,7 @@ function Index() {
         <h2 className="text-4xl font-extrabold md:text-5xl">What we <span className="text-festive">sell</span></h2>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
-            <div key={p.name} className="overflow-hidden rounded-2xl border bg-card shadow-sm transition-shadow hover:shadow-xl">
+            <div key={p.name} className="product-card overflow-hidden rounded-2xl border bg-card shadow-sm">
               <img src={p.img} alt={p.name} loading="lazy" width={1024} height={1024}
                 className="aspect-square w-full object-cover" />
               <div className="p-6">

@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep decorative kite motion in a browser-safe FlyingKites component with CSS animations and reduced-motion support; this avoids JavaScript loops and keeps shop content and links unobstructed.
