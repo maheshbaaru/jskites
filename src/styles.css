@@ -62,6 +62,7 @@
   --ring: oklch(0.68 0.19 45);
   --gradient-festive: linear-gradient(120deg, var(--primary), var(--secondary));
   --overlay-hero: linear-gradient(180deg, oklch(0.15 0.04 40 / 0.2), oklch(0.15 0.04 40 / 0.75));
+  --shadow-kite: 0 8px 12px color-mix(in oklab, var(--foreground) 18%, transparent);
 }
 
 @layer base {
@@ -81,4 +82,41 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.flying-kites { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.flying-kite { position: absolute; width: 125px; transform-origin: 50% 25%; filter: drop-shadow(var(--shadow-kite)); animation: kite-flight 13s ease-in-out infinite; }
+.flying-kite svg { display: block; width: 100%; height: auto; overflow: visible; }
+.flying-kite--near { right: 11%; top: 8%; color: var(--secondary); }
+.flying-kite--middle { right: 30%; top: 4%; width: 83px; color: var(--accent); animation-duration: 17s; animation-delay: -6s; }
+.flying-kite--far { right: 3%; top: 2%; width: 58px; color: var(--sky); animation-duration: 19s; animation-delay: -10s; }
+.kite-panel { fill: var(--primary-foreground); opacity: .18; }
+.kite-frame, .kite-outline { stroke: var(--primary-foreground); stroke-width: 1; opacity: .55; }
+.kite-string { stroke: var(--primary-foreground); stroke-width: 1.2; stroke-linecap: round; opacity: .7; }
+.kite-tail { transform-origin: 80px 157px; animation: kite-tail 4s ease-in-out infinite alternate; }
+.flying-kite--middle .kite-tail { animation-delay: -2s; }
+.hero-content { animation: content-arrive 900ms ease-out both; }
+.product-card { transition: transform 450ms ease, box-shadow 450ms ease; }
+.product-card img { transition: transform 700ms ease; }
+@media (hover: hover) {
+  .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-kite); }
+  .product-card:hover img { transform: scale(1.035); }
+}
+@keyframes kite-flight {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-9deg); }
+  25% { transform: translate3d(18px, -12px, 0) rotate(3deg); }
+  50% { transform: translate3d(-12px, 10px, 0) rotate(-4deg); }
+  75% { transform: translate3d(-22px, -16px, 0) rotate(-13deg); }
+}
+@keyframes kite-tail { from { transform: rotate(-6deg); } to { transform: rotate(8deg); } }
+@keyframes content-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 640px) {
+  .flying-kite--near { width: 85px; right: 14%; top: 6%; }
+  .flying-kite--middle { width: 58px; right: 48%; top: 3%; }
+  .flying-kite--far { width: 42px; right: 3%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flying-kite, .kite-tail, .hero-content { animation: none; }
+  .product-card, .product-card img { transition: none; }
+  .product-card:hover, .product-card:hover img { transform: none; }
 }

@@ -5,3 +5,4 @@
 - [x] Build Contact Us page (/contact) — address, phone, WhatsApp, map, directions
 - [x] Shared nav header across all pages
 - [x] Head metadata for new routes
+- [ ] Add and verify elegant flying-kite animations on the home page
