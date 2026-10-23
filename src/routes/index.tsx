@@ -1,35 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, MessageCircle, Navigation, Star, Clock, Phone } from "lucide-react";
+import { Clock, MapPin, MessageCircle, Navigation, Phone, Star } from "lucide-react";
 import hero from "@/assets/hero.jpg";
-
-const WHATSAPP = "919989714335";
-const PHONE_DISPLAY = "+91 99897 14335";
-const ADDRESS =
-  "Ravindra Bharathi School Road, Kamala Nagar, Vanasthalipuram, Hyderabad, Telangana 500070";
-const MAP_QUERY = encodeURIComponent(`JS Kite Shop, ${ADDRESS}`);
-const WA_TEXT = encodeURIComponent("Hi JS Kite Shop! I'd like to know about your kites.");
-const WA_LINK = `https://wa.me/${WHATSAPP}?text=${WA_TEXT}`;
-const WA_WEB_LINK = `https://web.whatsapp.com/send?phone=${WHATSAPP}&text=${WA_TEXT}`;
-const WA_APP_LINK = `whatsapp://send?phone=${WHATSAPP}&text=${WA_TEXT}`;
-
-// Opens the visitor's own WhatsApp app with a chat to the shop's number.
-// Phones: whatsapp:// opens the app directly (wa.me as fallback).
-// Computers: whatsapp:// opens WhatsApp Desktop; if it isn't installed, fall back to WhatsApp Web.
-function onWhatsAppClick(e: React.MouseEvent<HTMLAnchorElement>) {
-  e.preventDefault();
-  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-  let left = false;
-  const markLeft = () => { left = true; };
-  window.addEventListener("blur", markLeft, { once: true });
-  document.addEventListener("visibilitychange", markLeft, { once: true });
-  window.location.href = WA_APP_LINK;
-  setTimeout(() => {
-    window.removeEventListener("blur", markLeft);
-    document.removeEventListener("visibilitychange", markLeft);
-    if (!left) window.open(isMobile ? WA_LINK : WA_WEB_LINK, "_blank", "noopener,noreferrer");
-  }, 2000);
-}
-const DIRECTIONS = `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}`;
+import imgPaper from "@/assets/p-paper.jpg";
+import imgManja from "@/assets/p-manja.jpg";
+import imgReels from "@/assets/p-reels.jpg";
+import imgKids from "@/assets/p-kids.jpg";
+import imgCombos from "@/assets/p-combos.jpg";
+import imgBulk from "@/assets/p-bulk.jpg";
+import { SiteNav } from "@/components/site-nav";
+import {
+  ADDRESS,
+  DIRECTIONS,
+  MAP_QUERY,
+  PHONE_DISPLAY,
+  WA_LINK,
+  WHATSAPP,
+  onWhatsAppClick,
+} from "@/lib/shop";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,36 +33,23 @@ export const Route = createFileRoute("/")({
 });
 
 const products = [
-  { name: "Paper Kites", desc: "Classic patang in every colour and size." },
-  { name: "Manja & Thread", desc: "Strong, durable thread for long flights." },
-  { name: "Charkhi / Reels", desc: "Smooth wooden and plastic reels." },
-  { name: "Kids' Kites", desc: "Cartoon & plastic kites for little flyers." },
-  { name: "Festival Combos", desc: "Sankranti bundles at the best prices." },
-  { name: "Bulk Orders", desc: "Wholesale rates for shops and events." },
+  { name: "Paper Kites", desc: "Classic patang in every colour and size.", img: imgPaper },
+  { name: "Manja & Thread", desc: "Strong, durable thread for long flights.", img: imgManja },
+  { name: "Charkhi / Reels", desc: "Smooth wooden and plastic reels.", img: imgReels },
+  { name: "Kids' Kites", desc: "Cartoon & plastic kites for little flyers.", img: imgKids },
+  { name: "Festival Combos", desc: "Sankranti bundles at the best prices.", img: imgCombos },
+  { name: "Bulk Orders", desc: "Wholesale rates for shops and events.", img: imgBulk },
 ];
-
-function Btn({ href, children, variant }: { href: string; children: React.ReactNode; variant: "wa" | "primary" | "ghost" }) {
-  const styles = {
-    wa: "bg-whatsapp text-whatsapp-foreground",
-    primary: "bg-festive text-primary-foreground",
-    ghost: "bg-card/90 text-foreground",
-  }[variant];
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" onClick={href === WA_LINK ? onWhatsAppClick : undefined}
-      className={`inline-flex items-center gap-2 rounded-full px-6 py-3 font-bold shadow-lg transition-transform hover:-translate-y-0.5 ${styles}`}>
-      {children}
-    </a>
-  );
-}
 
 function Index() {
   return (
     <main>
-      <section className="relative min-h-[88vh] overflow-hidden">
+      <SiteNav />
+      <section className="relative min-h-[85vh] overflow-hidden">
         <img src={hero} alt="Colourful kites over Hyderabad" width={1600} height={1008}
           className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-hero-overlay" />
-        <div className="relative mx-auto flex min-h-[88vh] max-w-6xl flex-col justify-end px-6 pb-16 text-primary-foreground">
+        <div className="relative mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-end px-6 pb-16 text-primary-foreground">
           <span className="mb-4 inline-flex w-fit items-center gap-1 rounded-full bg-card/90 px-4 py-1 text-sm font-bold text-foreground">
             <Star className="h-4 w-4 fill-accent text-accent" /> 5.0 · 194 Google reviews
           </span>
@@ -84,8 +58,14 @@ function Index() {
             Kites, manja and everything you need to rule the sky — at fair prices, in Vanasthalipuram.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Btn href={WA_LINK} variant="wa"><MessageCircle className="h-5 w-5" /> Order on WhatsApp</Btn>
-            <Btn href={DIRECTIONS} variant="ghost"><Navigation className="h-5 w-5" /> Get Directions</Btn>
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={onWhatsAppClick}
+              className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-bold text-whatsapp-foreground shadow-lg transition-transform hover:-translate-y-0.5">
+              <MessageCircle className="h-5 w-5" /> Order on WhatsApp
+            </a>
+            <a href={DIRECTIONS} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-card/90 px-6 py-3 font-bold text-foreground shadow-lg transition-transform hover:-translate-y-0.5">
+              <Navigation className="h-5 w-5" /> Get Directions
+            </a>
           </div>
         </div>
       </section>
@@ -93,11 +73,14 @@ function Index() {
       <section className="mx-auto max-w-6xl px-6 py-20">
         <h2 className="text-4xl font-extrabold md:text-5xl">What we <span className="text-festive">sell</span></h2>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p, i) => (
-            <div key={p.name} className="rounded-2xl border bg-card p-6 transition-shadow hover:shadow-xl">
-              <div className={`mb-4 h-10 w-10 rotate-45 rounded-md ${["bg-primary", "bg-secondary", "bg-sky", "bg-accent"][i % 4]}`} />
-              <h3 className="text-2xl font-bold">{p.name}</h3>
-              <p className="mt-1 text-muted-foreground">{p.desc}</p>
+          {products.map((p) => (
+            <div key={p.name} className="overflow-hidden rounded-2xl border bg-card shadow-sm transition-shadow hover:shadow-xl">
+              <img src={p.img} alt={p.name} loading="lazy" width={1024} height={1024}
+                className="aspect-square w-full object-cover" />
+              <div className="p-6">
+                <h3 className="text-2xl font-bold">{p.name}</h3>
+                <p className="mt-1 text-muted-foreground">{p.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -120,11 +103,17 @@ function Index() {
           <ul className="mt-8 space-y-5 text-lg">
             <li className="flex gap-3"><MapPin className="mt-1 h-6 w-6 shrink-0 text-primary" />{ADDRESS}</li>
             <li className="flex gap-3"><Clock className="mt-1 h-6 w-6 shrink-0 text-primary" />Open daily · late hours in festival season</li>
-            <li className="flex gap-3"><Phone className="mt-1 h-6 w-6 shrink-0 text-primary" /><span><a href={`tel:+${WHATSAPP}`} className="underline font-bold">{PHONE_DISPLAY}</a><br /><a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={onWhatsAppClick} className="underline">Chat with us on WhatsApp</a></span></li>
+            <li className="flex gap-3"><Phone className="mt-1 h-6 w-6 shrink-0 text-primary" /><span><a href={`tel:+${WHATSAPP}`} className="font-bold underline">{PHONE_DISPLAY}</a><br /><a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={onWhatsAppClick} className="underline">Chat with us on WhatsApp</a></span></li>
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Btn href={DIRECTIONS} variant="primary"><Navigation className="h-5 w-5" /> Navigate in Google Maps</Btn>
-            <Btn href={WA_LINK} variant="wa"><MessageCircle className="h-5 w-5" /> WhatsApp</Btn>
+            <a href={DIRECTIONS} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground shadow-lg transition-transform hover:-translate-y-0.5">
+              <Navigation className="h-5 w-5" /> Navigate in Google Maps
+            </a>
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={onWhatsAppClick}
+              className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-bold text-whatsapp-foreground shadow-lg transition-transform hover:-translate-y-0.5">
+              <MessageCircle className="h-5 w-5" /> WhatsApp
+            </a>
           </div>
         </div>
         <iframe title="JS Kite Shop location" loading="lazy"
