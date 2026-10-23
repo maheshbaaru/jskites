@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, MessageCircle, Navigation, Star } from "lucide-react";
+import { Clock, MapPin, MessageCircle, Navigation, Phone, Star } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import imgPaper from "@/assets/p-paper.jpg";
 import imgManja from "@/assets/p-manja.jpg";
