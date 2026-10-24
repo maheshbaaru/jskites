@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep decorative kite motion in a browser-safe FlyingKites component with CSS animations and reduced-motion support; this avoids JavaScript loops and keeps shop content and links unobstructed.
+- Keep the sign-inspired masthead in the shared SiteNav with semantic signboard tokens and the shared shop contact helper; this keeps every page's branding and contact consistent.

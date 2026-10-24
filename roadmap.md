@@ -6,3 +6,4 @@
 - [x] Shared nav header across all pages
 - [x] Head metadata for new routes
 - [x] Add and verify elegant flying-kite animations on the home page
+- [x] Restyle the shared header using the supplied shop-sign reference

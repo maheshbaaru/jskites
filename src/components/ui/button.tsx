@@ -9,6 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        shopContact: "bg-signboard-accent text-signboard font-bold hover:bg-signboard-accent/90 focus-visible:ring-signboard-accent",
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:

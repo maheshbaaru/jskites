@@ -34,9 +34,22 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-signboard: var(--signboard);
+  --color-signboard-foreground: var(--signboard-foreground);
+  --color-signboard-accent: var(--signboard-accent);
+  --color-signboard-muted: var(--signboard-muted);
+  --color-signboard-border: var(--signboard-border);
 }
 
 :root {
+  --signboard: oklch(0.14 0.012 255);
+  --signboard-foreground: oklch(0.99 0 0);
+  --signboard-accent: oklch(0.93 0.19 102);
+  --signboard-muted: oklch(0.78 0.012 255);
+  --signboard-border: oklch(0.3 0.014 255);
+  --kite-blue: oklch(0.68 0.19 240);
+  --kite-pink: oklch(0.65 0.25 5);
+  --kite-green: oklch(0.8 0.2 140);
   --radius: 1rem;
   --background: oklch(0.985 0.015 85);
   --foreground: oklch(0.22 0.04 40);
@@ -85,6 +98,22 @@
 }
 
 .flying-kites { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.shop-header { border-bottom: 2px solid var(--signboard-accent); }
+.brand-kite { overflow: visible; transform-origin: 50% 20%; animation: brand-kite-sway 8s ease-in-out infinite; }
+.brand-kite-outline { fill: var(--signboard-foreground); stroke: var(--signboard-foreground); stroke-width: 2; }
+.brand-kite-blue { fill: var(--kite-blue); }
+.brand-kite-yellow { fill: var(--signboard-accent); }
+.brand-kite-pink { fill: var(--kite-pink); }
+.brand-kite-green { fill: var(--kite-green); }
+.brand-kite-spar { fill: none; stroke: var(--signboard); stroke-width: 1.5; }
+.brand-kite-ribbon { fill: none; stroke-width: 4; stroke-linecap: round; }
+.brand-kite-ribbon-blue { stroke: var(--kite-blue); }
+.brand-kite-ribbon-pink { stroke: var(--kite-pink); }
+@keyframes brand-kite-sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@media (max-width: 480px) {
+  .shop-brand { margin: 0 auto; }
+  .shop-contact { width: 100%; }
+}
 .flying-kite { position: absolute; width: 125px; transform-origin: 50% 25%; filter: drop-shadow(var(--shadow-kite)); animation: kite-flight 13s ease-in-out infinite; }
 .flying-kite svg { display: block; width: 100%; height: auto; overflow: visible; }
 .flying-kite--near { right: 11%; top: 8%; color: var(--secondary); }
@@ -116,7 +145,7 @@
   .flying-kite--far { width: 42px; right: 3%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .flying-kite, .kite-tail, .hero-content { animation: none; }
+  .flying-kite, .kite-tail, .hero-content, .brand-kite { animation: none; }
   .product-card, .product-card img { transition: none; }
   .product-card:hover, .product-card:hover img { transform: none; }
 }
