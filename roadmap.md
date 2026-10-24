@@ -8,3 +8,4 @@
 - [x] Add and verify elegant flying-kite animations on the home page
 - [x] Restyle the shared header using the supplied shop-sign reference
 - [x] Refresh the header colour and update all Google Maps navigation links
+- [x] Test every directions button against Google Maps and correct the shop destination

@@ -11,3 +11,4 @@
 
 - Keep decorative kite motion in a browser-safe FlyingKites component with CSS animations and reduced-motion support; this avoids JavaScript loops and keeps shop content and links unobstructed.
 - Keep the sign-inspired masthead in the shared SiteNav with semantic signboard tokens and the shared shop contact helper; this keeps every page's branding and contact consistent.
+- Keep all directions links on the shared shop helper and include the business name in the Maps destination; the street address alone resolves to the nearby school, and the visitor must choose their own starting point.
