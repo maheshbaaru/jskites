@@ -42,11 +42,11 @@
 }
 
 :root {
-  --signboard: oklch(0.14 0.012 255);
+  --signboard: oklch(0.3 0.065 185);
   --signboard-foreground: oklch(0.99 0 0);
-  --signboard-accent: oklch(0.93 0.19 102);
-  --signboard-muted: oklch(0.78 0.012 255);
-  --signboard-border: oklch(0.3 0.014 255);
+  --signboard-accent: oklch(0.9 0.15 90);
+  --signboard-muted: oklch(0.86 0.025 185);
+  --signboard-border: oklch(0.45 0.06 185);
   --kite-blue: oklch(0.68 0.19 240);
   --kite-pink: oklch(0.65 0.25 5);
   --kite-green: oklch(0.8 0.2 140);
