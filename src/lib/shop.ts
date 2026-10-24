@@ -8,9 +8,9 @@ export const WA_TEXT = encodeURIComponent("Hi JS Kite Shop! I'd like to know abo
 export const WA_LINK = `https://wa.me/${WHATSAPP}?text=${WA_TEXT}`;
 export const WA_WEB_LINK = `https://web.whatsapp.com/send?phone=${WHATSAPP}&text=${WA_TEXT}`;
 export const WA_APP_LINK = `whatsapp://send?phone=${WHATSAPP}&text=${WA_TEXT}`;
-// Use the street address rather than a combined business-name search so Maps
-// can resolve the destination, and request its turn-by-turn navigation flow.
-export const DIRECTIONS = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(ADDRESS)}&travelmode=driving&dir_action=navigate`;
+// Include the business name: the street address alone resolves to the nearby
+// Ravindra Bharathi School instead of the shop. Leave the origin to the visitor.
+export const DIRECTIONS = `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}&travelmode=driving&dir_action=navigate`;
 
 // Opens the visitor's own WhatsApp app with a chat to the shop's number.
 // Phones: whatsapp:// opens the app directly (wa.me as fallback).
