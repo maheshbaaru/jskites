@@ -7,7 +7,7 @@ import imgReels from "@/assets/p-reels.jpg";
 import imgKids from "@/assets/p-kids.jpg";
 import imgCombos from "@/assets/p-combos.jpg";
 import imgBulk from "@/assets/p-bulk.jpg";
-import { SiteNav } from "@/components/site-nav";
+import { SiteNav, SiteFooter } from "@/components/site-nav";
 import { FlyingKites } from "@/components/flying-kites";
 import {
   ADDRESS,
@@ -123,9 +123,7 @@ function Index() {
           className="h-96 w-full rounded-2xl border shadow-lg" />
       </section>
 
-      <footer className="bg-festive py-8 text-center text-primary-foreground">
-        © {new Date().getFullYear()} JS Kite Shop · Vanasthalipuram, Hyderabad
-      </footer>
+      <SiteFooter />
 
       <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={onWhatsAppClick} aria-label="Chat on WhatsApp"
         className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-2xl transition-transform hover:scale-110">

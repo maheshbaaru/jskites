@@ -7,6 +7,7 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/reviews", label: "Reviews" },
   { to: "/contact", label: "Contact" },
+  { to: "/privacy", label: "Privacy" },
 ] as const;
 
 export function SiteNav() {
@@ -58,5 +59,15 @@ export function SiteNav() {
         </div>
       </div>
     </header>
+  );
+}
+
+// Shared footer — same teal/gold signboard colours as the header.
+export function SiteFooter() {
+  return (
+    <footer className="border-t-2 border-signboard-accent bg-signboard py-8 text-center text-signboard-foreground">
+      <p className="font-display text-lg font-bold text-signboard-accent">JS Kite Shop</p>
+      <p className="mt-1 text-sm text-signboard-muted">© {new Date().getFullYear()} JS Kite Shop · Vanasthalipuram, Hyderabad</p>
+    </footer>
   );
 }

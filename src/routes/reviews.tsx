@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, MessageCircle, Navigation, Star } from "lucide-react";
-import { SiteNav } from "@/components/site-nav";
+import { SiteNav, SiteFooter } from "@/components/site-nav";
 import { ADDRESS, DIRECTIONS, WA_LINK, onWhatsAppClick } from "@/lib/shop";
 
 export const Route = createFileRoute("/reviews")({
@@ -66,6 +66,7 @@ function Reviews() {
           </p>
         </div>
       </section>
+      <SiteFooter />
     </main>
   );
 }

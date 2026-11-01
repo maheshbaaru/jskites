@@ -2,7 +2,7 @@
 export const WHATSAPP = "919989714335";
 export const PHONE_DISPLAY = "+91 99897 14335";
 export const ADDRESS =
-  "Ravindra Bharathi School Road, Kamala Nagar, Vanasthalipuram, Hyderabad, Telangana 500070";
+  "Beside HMDA Park, Ravindra Bharathi School Road, Kamala Nagar, Vanasthalipuram, Hyderabad, Telangana 500070";
 export const MAP_QUERY = encodeURIComponent(`JS Kite Shop, ${ADDRESS}`);
 export const WA_TEXT = encodeURIComponent("Hi JS Kite Shop! I'd like to know about your kites.");
 export const WA_LINK = `https://wa.me/${WHATSAPP}?text=${WA_TEXT}`;
