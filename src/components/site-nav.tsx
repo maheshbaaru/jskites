@@ -7,6 +7,7 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/reviews", label: "Reviews" },
   { to: "/contact", label: "Contact" },
+  { to: "/privacy", label: "Privacy" },
 ] as const;
 
 export function SiteNav() {
