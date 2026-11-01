@@ -60,3 +60,13 @@ export function SiteNav() {
     </header>
   );
 }
+
+// Shared footer — same teal/gold signboard colours as the header.
+export function SiteFooter() {
+  return (
+    <footer className="border-t-2 border-signboard-accent bg-signboard py-8 text-center text-signboard-foreground">
+      <p className="font-display text-lg font-bold text-signboard-accent">JS Kite Shop</p>
+      <p className="mt-1 text-sm text-signboard-muted">© {new Date().getFullYear()} JS Kite Shop · Vanasthalipuram, Hyderabad</p>
+    </footer>
+  );
+}

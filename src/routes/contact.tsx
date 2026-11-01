@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
-import { SiteNav } from "@/components/site-nav";
+import { SiteNav, SiteFooter } from "@/components/site-nav";
 import {
   ADDRESS,
   DIRECTIONS,
@@ -66,9 +66,7 @@ function Contact() {
         <MessageCircle className="h-7 w-7" />
       </a>
 
-      <footer className="bg-festive py-8 text-center text-primary-foreground">
-        © {new Date().getFullYear()} JS Kite Shop · Vanasthalipuram, Hyderabad
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
