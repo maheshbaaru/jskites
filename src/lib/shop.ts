@@ -8,6 +8,10 @@ export const WA_TEXT = encodeURIComponent("Hi JS Kite Shop! I'd like to know abo
 export const WA_LINK = `https://wa.me/${WHATSAPP}?text=${WA_TEXT}`;
 export const WA_WEB_LINK = `https://web.whatsapp.com/send?phone=${WHATSAPP}&text=${WA_TEXT}`;
 export const WA_APP_LINK = `whatsapp://send?phone=${WHATSAPP}&text=${WA_TEXT}`;
+// Social profiles — Instagram is the shop's TheFestiveStop account, Facebook is the owner's profile.
+export const INSTAGRAM_LINK = "https://www.instagram.com/thefestivestop/";
+export const FACEBOOK_LINK = "https://www.facebook.com/vedamurty.rajesh";
+
 // Include the business name: the street address alone resolves to the nearby
 // Ravindra Bharathi School instead of the shop. Leave the origin to the visitor.
 export const DIRECTIONS = `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}&travelmode=driving&dir_action=navigate`;

@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Crown, MapPin, MessageCircle } from "lucide-react";
+import { Crown, Facebook, Instagram, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PHONE_DISPLAY, WA_LINK, onWhatsAppClick } from "@/lib/shop";
+import { FACEBOOK_LINK, INSTAGRAM_LINK, PHONE_DISPLAY, WA_LINK, onWhatsAppClick } from "@/lib/shop";
 
 const links = [
   { to: "/", label: "Home" },
@@ -55,7 +55,17 @@ export function SiteNav() {
             return <Link key={l.to} to={l.to} className={cls} aria-current={isActive ? "page" : undefined}>{l.label}</Link>;
           })}
         </nav>
-        <span className="hidden items-center gap-1.5 text-xs text-signboard-muted sm:flex"><MapPin className="h-3.5 w-3.5" aria-hidden="true" /> Vanasthalipuram, Hyderabad</span>
+        <div className="flex items-center gap-4">
+          <span className="hidden items-center gap-1.5 text-xs text-signboard-muted sm:flex"><MapPin className="h-3.5 w-3.5" aria-hidden="true" /> Vanasthalipuram, Hyderabad</span>
+          <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" aria-label="JS Kite Shop on Instagram"
+            className="text-signboard-muted transition-colors hover:text-signboard-accent">
+            <Instagram className="h-5 w-5" aria-hidden="true" />
+          </a>
+          <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" aria-label="JS Kite Shop on Facebook"
+            className="text-signboard-muted transition-colors hover:text-signboard-accent">
+            <Facebook className="h-5 w-5" aria-hidden="true" />
+          </a>
+        </div>
         </div>
       </div>
     </header>
@@ -68,6 +78,16 @@ export function SiteFooter() {
     <footer className="border-t-2 border-signboard-accent bg-signboard py-8 text-center text-signboard-foreground">
       <p className="font-display text-lg font-bold text-signboard-accent">JS Kite Shop</p>
       <p className="mt-1 text-sm text-signboard-muted">© {new Date().getFullYear()} JS Kite Shop · Vanasthalipuram, Hyderabad</p>
+      <div className="mt-4 flex items-center justify-center gap-6">
+        <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-bold text-signboard-muted transition-colors hover:text-signboard-accent">
+          <Instagram className="h-5 w-5" aria-hidden="true" /> Instagram
+        </a>
+        <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-bold text-signboard-muted transition-colors hover:text-signboard-accent">
+          <Facebook className="h-5 w-5" aria-hidden="true" /> Facebook
+        </a>
+      </div>
     </footer>
   );
 }
