@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { ratingQuery } from "@/lib/rating.functions";
 import { MapPin, MessageCircle, Navigation, Star } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/site-nav";
 import { ADDRESS, DIRECTIONS, WA_LINK, onWhatsAppClick } from "@/lib/shop";
@@ -7,13 +9,14 @@ export const Route = createFileRoute("/reviews")({
   head: () => ({
     meta: [
       { title: "Customer Reviews – JS Kite Shop, Vanasthalipuram" },
-      { name: "description", content: "Rated 5.0 by 194 customers on Google. Read what kite lovers say about JS Kite Shop in Vanasthalipuram, Hyderabad." },
+      { name: "description", content: "Rated 5.0 by customers on Google. Read what kite lovers say about JS Kite Shop in Vanasthalipuram, Hyderabad." },
       { property: "og:title", content: "Customer Reviews – JS Kite Shop" },
-      { property: "og:description", content: "Rated 5.0 ★ by 194 customers on Google." },
+      { property: "og:description", content: "Rated 5.0 ★ on Google." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(ratingQuery),
   component: Reviews,
 });
 
@@ -22,6 +25,7 @@ function Stars({ n = 5, size = "h-5 w-5" }: { n?: number; size?: string }) {
 }
 
 function Reviews() {
+  const { data: r } = useSuspenseQuery(ratingQuery);
   return (
     <main>
       <SiteNav />
@@ -29,9 +33,9 @@ function Reviews() {
         <div className="mx-auto max-w-3xl px-6">
           <h1 className="text-5xl font-extrabold md:text-6xl">Customer Reviews</h1>
           <div className="mt-6 flex flex-col items-center gap-2">
-            <span className="text-7xl font-extrabold">5.0</span>
+            <span className="text-7xl font-extrabold">{r.rating.toFixed(1)}</span>
             <Stars size="h-7 w-7" />
-            <p className="mt-1 text-lg font-bold">194 reviews on Google</p>
+            <p className="mt-1 text-lg font-bold">{r.count} reviews on Google</p>
           </div>
         </div>
       </section>

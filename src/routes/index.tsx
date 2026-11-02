@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { ratingQuery } from "@/lib/rating.functions";
 import { Clock, MapPin, MessageCircle, Navigation, Phone, Star } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import imgPaper from "@/assets/p-paper.jpg";
@@ -23,15 +25,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "JS Kite Shop – Kites & Manja in Vanasthalipuram, Hyderabad" },
-      { name: "description", content: "Wide variety of kites, manja and accessories at fair prices. Rated 5.0 by 194 customers. Chat on WhatsApp or get directions." },
+      { name: "description", content: "Wide variety of kites, manja and accessories at fair prices. Rated 5.0 on Google. Chat on WhatsApp or get directions." },
       { property: "og:title", content: "JS Kite Shop – Vanasthalipuram, Hyderabad" },
-      { property: "og:description", content: "Kites, manja & accessories. Rated 5.0 ★ by 194 customers." },
+      { property: "og:description", content: "Kites, manja & accessories. Rated 5.0 ★ on Google." },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "https://jskites.lovable.app/og-share.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://jskites.lovable.app/og-share.jpg" },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(ratingQuery),
   component: Index,
 });
 
@@ -45,6 +48,7 @@ const products = [
 ];
 
 function Index() {
+  const { data: r } = useSuspenseQuery(ratingQuery);
   return (
     <main>
       <SiteNav />
@@ -55,7 +59,7 @@ function Index() {
         <FlyingKites />
         <div className="hero-content relative mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-end px-6 pb-16 text-primary-foreground">
           <span className="mb-4 inline-flex w-fit items-center gap-1 rounded-full bg-card/90 px-4 py-1 text-sm font-bold text-foreground">
-            <Star className="h-4 w-4 fill-accent text-accent" /> 5.0 · 194 Google reviews
+            <Star className="h-4 w-4 fill-accent text-accent" /> {r.rating.toFixed(1)} · {r.count} Google reviews
           </span>
           <h1 className="text-6xl font-extrabold leading-none md:text-8xl">JS Kite Shop</h1>
           <p className="mt-4 max-w-xl text-lg md:text-xl">
