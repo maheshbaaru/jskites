@@ -12,3 +12,4 @@
 - [x] Match footer colours to the teal/gold header on all pages
 - [x] Add "Beside HMDA Park" to the shop address everywhere
 - [ ] Google Analytics readiness: add Privacy Policy page; cookie consent and tracking plan pending GA connection (user dismissed the connect card)
+- [x] Add Instagram (@thefestivestop) and Facebook (vedamurty.rajesh) links to header and footer
